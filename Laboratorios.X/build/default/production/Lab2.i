@@ -2456,7 +2456,7 @@ ENDM
 # 8 "Lab2.s" 2
 
 ; CONFIG1
-  CONFIG FOSC = INTRC_NOCLKOUT ; Oscillator Selection bits (RCIO oscillator: I/O function on ((PORTA) and 07Fh), 6/OSC2/CLKOUT pin, RC on ((PORTA) and 07Fh), 7/OSC1/CLKIN)
+  CONFIG FOSC = XT ; Oscillator Selection bits (RCIO oscillator: I/O function on ((PORTA) and 07Fh), 6/OSC2/CLKOUT pin, RC on ((PORTA) and 07Fh), 7/OSC1/CLKIN)
   CONFIG WDTE = OFF ; Watchdog Timer Enable bit (WDT disabled and can be enabled by ((WDTCON) and 07Fh), 0 bit of the WDTCON register)
   CONFIG PWRTE = ON ; Power-up Timer Enable bit (PWRT enabled)
   CONFIG MCLRE = OFF ; ((PORTE) and 07Fh), 3/MCLR pin function select bit (((PORTE) and 07Fh), 3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -2491,7 +2491,7 @@ main:
     bsf STATUS, 5 ; banco 11
     bsf STATUS, 6
 
-    BANKSEL ANSEL
+    BANKSEL ANSEL ;Puertos digitales unicamente
     clrf ANSEL
     clrf ANSELH
 
@@ -2500,23 +2500,23 @@ main:
     bsf STATUS, 6
 
 
-    BANKSEL TRISA
+    BANKSEL TRISA ; Primeros bits de A son inputs
     clrf TRISA
     bsf TRISA, 5
     bsf TRISA, 6
     bsf TRISA, 7
 
     BANKSEL TRISB
-    clrf TRISB
-    bsf TRISB, 4
+    clrf TRISB ; Solo los primeros bits de B son outputs para que no
+    bsf TRISB, 4 ; cuente con los últimos bits tambien
     bsf TRISB, 5
     bsf TRISB, 6
     bsf TRISB, 7
 
     BANKSEL TRISC
     clrf TRISC
-    bsf TRISC, 0
-    bsf TRISC, 1
+    bsf TRISC, 0 ; Los primeros bits de C seran las entradas de
+    bsf TRISC, 1 ; los pushbottons
     bsf TRISC, 2
     bsf TRISC, 3
     bsf TRISC, 4
@@ -2524,38 +2524,41 @@ main:
 
     BANKSEL TRISD
     clrf TRISD
-    bsf TRISD, 4
+    bsf TRISD, 4 ; Mismo caso con el puerto B
     bsf TRISD, 5
     bsf TRISD, 6
     bsf TRISD, 7
 ;------------------------------------------
     bcf STATUS, 5 ; banco 00
     bcf STATUS, 6
+
 loop:
-    btfsc PORTC, 0
-    goto inc_B
+    btfsc PORTC, 0 ; Si el interruptor se oprime va a la instrucción
+    goto inc_B ; correspondiente, si no, se salta el goto y sigue
     btfsc PORTC, 1
     goto dec_B
     btfsc PORTC, 2
     goto inc_D
     btfsc PORTC, 3
     goto dec_D
-    goto loop
+    btfsc PORTC, 4
+    goto adder_
+    goto loop ; Termina de verificar puertos y vuelve al inicio
 
 inc_B:
-    btfsc PORTC, 0
-    goto $-1
-    incf PORTB, F
-    return
+    btfsc PORTC, 0 ; Si se mantiene oprimido no pasará nada hasta que
+    goto $-1 ; que se suelte el push (antirrebote)
+    incf PORTB, F ; Incrementa el puerto
+    return ; Vuelve al ciclo principal
 
 dec_B:
-    btfsc PORTC, 1
+    btfsc PORTC, 1 ; Mismo caso pero decrementa
     goto $-1
     decf PORTB, F
     return
 
 inc_D:
-    btfsc PORTC, 2
+    btfsc PORTC, 2 ; Mismo caso que en B pero para D
     goto $-1
     incf PORTD, F
     return
@@ -2564,6 +2567,14 @@ dec_D:
     btfsc PORTC, 3
     goto $-1
     decf PORTD, F
+    return
+
+adder_:
+    btfsc PORTC, 4 ; Sistema de antirrebote
+    goto $-1
+    movf PORTB, 0 ; Mueve el puerto B al registro F
+    addwf PORTD, 0 ; Le suma al registro F el puerto D
+    movwf PORTA ; Mueve el registro F al puerto A
     return
 
 

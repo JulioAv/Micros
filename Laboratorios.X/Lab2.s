@@ -7,7 +7,7 @@ PROCESSOR 16F887
 #include <xc.inc>
 
 ; CONFIG1
-  CONFIG  FOSC = INTRC_NOCLKOUT ; Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
+  CONFIG  FOSC = XT		; Oscillator Selection bits (RCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, RC on RA7/OSC1/CLKIN)
   CONFIG  WDTE = OFF            ; Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
   CONFIG  PWRTE = ON            ; Power-up Timer Enable bit (PWRT enabled)
   CONFIG  MCLRE = OFF           ; RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
@@ -82,6 +82,7 @@ main:
 ;------------------------------------------    
     bcf	    STATUS, 5	; banco 00
     bcf	    STATUS, 6
+    
 loop:
     btfsc   PORTC, 0	; Si el interruptor se oprime va a la instrucción
     goto    inc_B	; correspondiente, si no, se salta el goto y sigue
@@ -91,6 +92,8 @@ loop:
     goto    inc_D
     btfsc   PORTC, 3
     goto    dec_D
+    btfsc   PORTC, 4
+    goto    adder_
     goto loop		; Termina de verificar puertos y vuelve al inicio
     
 inc_B:
@@ -115,6 +118,14 @@ dec_D:
     btfsc   PORTC, 3
     goto $-1
     decf    PORTD, F
+    return
+    
+adder_:
+    btfsc   PORTC, 4	; Sistema de antirrebote
+    goto $-1
+    movf    PORTB, 0	; Mueve el puerto B al registro F
+    addwf   PORTD, 0	; Le suma al registro F el puerto D
+    movwf   PORTA	; Mueve el registro F al puerto A
     return
     
 
