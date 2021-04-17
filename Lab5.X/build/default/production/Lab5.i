@@ -2650,9 +2650,9 @@ decimal:
     movf var, 0
     subwf var2, 0 ; le resta 100 a la variable
     BANKSEL STATUS
-    btfsc STATUS, 2 ; cuando la resta da menor a 100, sigue
+    btfsc STATUS, 0 ; cuando la resta da menor a 100, sigue
     incf cont1 ; con el proceso y la cantidad de veces
-    btfsc STATUS, 2 ; que tuvo que restar se vuelve la centena
+    btfsc STATUS, 0 ; que tuvo que restar se vuelve la centena
     goto $-5
     movwf resu
     movf cont1, 0
@@ -2663,9 +2663,9 @@ decimal:
     movwf var2 ; a restar desde el valor obtenido de la resta
     movf resu, 0
     subwf var2
-    btfsc STATUS, 2
+    btfsc STATUS, 0
     incf cont1
-    btfsc STATUS, 2
+    btfsc STATUS, 0
     goto $-4
     movwf resu ; ahora almacena la cantidad de restas
     movf cont1, 0 ; en las decenas
