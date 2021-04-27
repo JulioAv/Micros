@@ -37,11 +37,11 @@ char display[10] = {0B00111111, 0B00000110, 0B01011011, 0B01001111,
 void __interrupt()isr(void){
     if (RBIF){                      //Verifica si hay interrupción y
         if (RB0==0){                //dependiendo del pin presionado
-            PORTA++;                //se incrementa o decrementa el valor
+            cont++;                //se incrementa o decrementa el valor
             INTCONbits.RBIF = 0;    //del Puerto A y se limpia el IF
     }
         else if (RB1==0) {
-            PORTA--;
+            cont--;
             INTCONbits.RBIF = 0;
     }
 }
@@ -93,14 +93,15 @@ void main(void) {
     PORTA = 0x00;
     PORTC = 0x00;
     PORTD = 0X00;
+    cont = 0;
     
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 1;    //Activación de las interrupciones
     INTCONbits.RBIE = 1;
         
     while (1){
-        cont = PORTA;       
-        cen = PORTA/100;    // Las centenas son la división sin decimales
+       // cont = PORTA;       
+        cen = cont/100;    // Las centenas son la división sin decimales
         val1 = cont%100;    
         dec = val1/10;      //Las decenas son la división del residuo
         uni = val1%10;      //Las unidades son el residuo de la division

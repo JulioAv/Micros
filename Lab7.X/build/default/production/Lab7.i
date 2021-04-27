@@ -2524,14 +2524,15 @@ int disp;
 char display[10] = {0B00111111, 0B00000110, 0B01011011, 0B01001111,
 0B01100110, 0B01101101, 0B01111101, 0B01000111, 0B01111111, 0B01100111};
 
+
 void __attribute__((picinterrupt((""))))isr(void){
     if (RBIF){
         if (RB0==0){
-            PORTA++;
+            cont++;
             INTCONbits.RBIF = 0;
     }
         else if (RB1==0) {
-            PORTA--;
+            cont--;
             INTCONbits.RBIF = 0;
     }
 }
@@ -2559,7 +2560,7 @@ void __attribute__((picinterrupt((""))))isr(void){
                 disp =0;
                 break;
         }
-        PORTBbits.RB2=~PORTBbits.RB2;
+
         INTCONbits.T0IF = 0;
         TMR0 = 217;
 
@@ -2583,14 +2584,15 @@ void main(void) {
     PORTA = 0x00;
     PORTC = 0x00;
     PORTD = 0X00;
+    cont = 0;
 
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 1;
     INTCONbits.RBIE = 1;
 
     while (1){
-        cont = PORTA;
-        cen = PORTA/100;
+
+        cen = cont/100;
         val1 = cont%100;
         dec = val1/10;
         uni = val1%10;
