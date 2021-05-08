@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Sat May 08 01:02:24 2021
+                                                                                               Sat May 08 15:39:18 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -619,12 +619,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    605  0755  178B               	bsf	11,7	;volatile
    606  0756                     l781:
    607                           
-   608                           ;Lab10.c: 79:         UART_write("Que accion desea ejecutar? \r \0");
+   608                           ;Lab10.c: 77:         UART_write("Que accion desea ejecutar? \r \0");
    609  0756  3028               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
    610  0757  120A  118A  270D  120A  118A  	fcall	_UART_write
    611  075C                     l783:
    612                           
-   613                           ;Lab10.c: 80:         _delay((unsigned long)((50)*(8000000/4000.0)));
+   613                           ;Lab10.c: 78:         _delay((unsigned long)((50)*(8000000/4000.0)));
    614  075C  3082               	movlw	130
    615  075D  00F3               	movwf	??_main+1
    616  075E  30DD               	movlw	221
@@ -637,12 +637,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    623  0764  2F65               	nop2
    624  0765                     l785:
    625                           
-   626                           ;Lab10.c: 81:         UART_write("[1] Desplegar Cadena de Caracteres \r \0");
+   626                           ;Lab10.c: 79:         UART_write("[1] Desplegar Cadena de Caracteres \r \0");
    627  0765  3001               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
    628  0766  120A  118A  270D  120A  118A  	fcall	_UART_write
    629  076B                     l787:
    630                           
-   631                           ;Lab10.c: 82:         _delay((unsigned long)((50)*(8000000/4000.0)));
+   631                           ;Lab10.c: 80:         _delay((unsigned long)((50)*(8000000/4000.0)));
    632  076B  3082               	movlw	130
    633  076C  00F3               	movwf	??_main+1
    634  076D  30DD               	movlw	221
@@ -655,12 +655,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    641  0773  2F74               	nop2
    642  0774                     l789:
    643                           
-   644                           ;Lab10.c: 83:         UART_write("[2] Cambiar PORTA \r \0");
+   644                           ;Lab10.c: 81:         UART_write("[2] Cambiar PORTA \r \0");
    645  0774  305D               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
    646  0775  120A  118A  270D  120A  118A  	fcall	_UART_write
    647  077A                     l791:
    648                           
-   649                           ;Lab10.c: 84:         _delay((unsigned long)((50)*(8000000/4000.0)));
+   649                           ;Lab10.c: 82:         _delay((unsigned long)((50)*(8000000/4000.0)));
    650  077A  3082               	movlw	130
    651  077B  00F3               	movwf	??_main+1
    652  077C  30DD               	movlw	221
@@ -673,12 +673,12 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    659  0782  2F83               	nop2
    660  0783                     l793:
    661                           
-   662                           ;Lab10.c: 85:         UART_write("[3] Cambiar PORTB \r \0");
+   662                           ;Lab10.c: 83:         UART_write("[3] Cambiar PORTB \r \0");
    663  0783  3073               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
    664  0784  120A  118A  270D  120A  118A  	fcall	_UART_write
    665  0789                     l795:
    666                           
-   667                           ;Lab10.c: 86:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+   667                           ;Lab10.c: 84:         _delay((unsigned long)((1000)*(8000000/4000.0)));
    668  0789  300B               	movlw	11
    669  078A  00F4               	movwf	??_main+2
    670  078B  3026               	movlw	38
@@ -694,7 +694,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    680  0794  2F8F               	goto	u207
    681  0795  2F96               	nop2
    682  0796                     l55:	
-   683                           ;Lab10.c: 88:         while(!RCIF);
+   683                           ;Lab10.c: 86:         while(!RCIF);
    684                           
    685  0796  1283               	bcf	3,5	;RP0=0, select bank0
    686  0797  1303               	bcf	3,6	;RP1=0, select bank0
@@ -706,7 +706,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    692  079C                     u110:
    693  079C                     l797:
    694                           
-   695                           ;Lab10.c: 89:         _delay((unsigned long)((50)*(8000000/4000.0)));
+   695                           ;Lab10.c: 87:         _delay((unsigned long)((50)*(8000000/4000.0)));
    696  079C  3082               	movlw	130
    697  079D  00F3               	movwf	??_main+1
    698  079E  30DD               	movlw	221
@@ -719,7 +719,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    705  07A4  2FA5               	nop2
    706  07A5                     l799:
    707                           
-   708                           ;Lab10.c: 91:         if (RCREG == '1'){
+   708                           ;Lab10.c: 89:         if (RCREG == '1'){
    709  07A5  3031               	movlw	49
    710  07A6  1283               	bcf	3,5	;RP0=0, select bank0
    711  07A7  1303               	bcf	3,6	;RP1=0, select bank0
@@ -732,11 +732,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    718  07AD                     u120:
    719  07AD                     l801:
    720                           
-   721                           ;Lab10.c: 92:             UART_write("Buenas jovenes \r \0");
+   721                           ;Lab10.c: 90:             UART_write("Buenas jovenes \r \0");
    722  07AD  3089               	movlw	(low ((STR_5-__stringbase)| (0+32768)))& (0+255)
    723  07AE  120A  118A  270D  120A  118A  	fcall	_UART_write
    724                           
-   725                           ;Lab10.c: 93:         }
+   725                           ;Lab10.c: 91:         }
    726  07B3  2F56               	goto	l781
    727  07B4                     l803:
    728  07B4  3032               	movlw	50
@@ -749,11 +749,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    735  07BA                     u130:
    736  07BA                     l805:
    737                           
-   738                           ;Lab10.c: 95:             UART_write("Ingrese el valor: \r \0");
+   738                           ;Lab10.c: 93:             UART_write("Ingrese el valor: \r \0");
    739  07BA  3047               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
    740  07BB  120A  118A  270D  120A  118A  	fcall	_UART_write
    741  07C0                     l61:	
-   742                           ;Lab10.c: 96:             while(!RCIF);
+   742                           ;Lab10.c: 94:             while(!RCIF);
    743                           
    744  07C0  1283               	bcf	3,5	;RP0=0, select bank0
    745  07C1  1303               	bcf	3,6	;RP1=0, select bank0
@@ -765,11 +765,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    751  07C6                     u140:
    752  07C6                     l807:
    753                           
-   754                           ;Lab10.c: 97:             PORTA = RCREG;
+   754                           ;Lab10.c: 95:             PORTA = RCREG;
    755  07C6  081A               	movf	26,w	;volatile
    756  07C7  0085               	movwf	5	;volatile
    757                           
-   758                           ;Lab10.c: 98:                 }
+   758                           ;Lab10.c: 96:                 }
    759  07C8  2F56               	goto	l781
    760  07C9                     l809:
    761  07C9  3033               	movlw	51
@@ -782,11 +782,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    768  07CF                     u150:
    769  07CF                     l811:
    770                           
-   771                           ;Lab10.c: 101:             UART_write("Ingrese el valor: \r \0");
+   771                           ;Lab10.c: 99:             UART_write("Ingrese el valor: \r \0");
    772  07CF  3047               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
    773  07D0  120A  118A  270D  120A  118A  	fcall	_UART_write
    774  07D5                     l66:	
-   775                           ;Lab10.c: 102:             while(!RCIF);
+   775                           ;Lab10.c: 100:             while(!RCIF);
    776                           
    777  07D5  1283               	bcf	3,5	;RP0=0, select bank0
    778  07D6  1303               	bcf	3,6	;RP1=0, select bank0
@@ -798,7 +798,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    784  07DB                     u160:
    785  07DB                     l813:
    786                           
-   787                           ;Lab10.c: 103:             PORTB = RCREG;
+   787                           ;Lab10.c: 101:             PORTB = RCREG;
    788  07DB  081A               	movf	26,w	;volatile
    789  07DC  0086               	movwf	6	;volatile
    790  07DD  2F56               	goto	l781
@@ -1029,7 +1029,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Sat May 08 01:02:24 2021
+Symbol Table                                                                                   Sat May 08 15:39:18 2021
 
                       pc 0002                       l45 0719                       l61 07C0  
                      l55 0796                       l49 072F                       l66 07D5  

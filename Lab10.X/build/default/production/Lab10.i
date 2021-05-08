@@ -2565,8 +2565,6 @@ void main(void) {
     INTCONbits.GIE = 1;
 
     while (1){
-
-
         UART_write("Que accion desea ejecutar? \r \0");
         _delay((unsigned long)((50)*(8000000/4000.0)));
         UART_write("[1] Desplegar Cadena de Caracteres \r \0");

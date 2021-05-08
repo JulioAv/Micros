@@ -31,34 +31,34 @@
 char word[] = "lol";
 //char palabra[]="Buenas jovenes";
 int op;
-void UART_write(unsigned char* word){
-    while (*word != 0){
-        TXREG = (*word);
-        while(!TXSTAbits.TRMT);
-        word++;
-    }
+void UART_write(unsigned char* word){   //Función que transmite datos
+    while (*word != 0){                 //Verifica que el puntero aumente
+        TXREG = (*word);                //Envía el caracter que toca de la cadena
+        while(!TXSTAbits.TRMT);         //Espera a que se haya enviado el dato
+        word++;                         //Aumenta el apuntador para ir al
+    }                                   //siguente caracter
     return;
 }
 
 void main(void) {
     
-    ANSELH = 0;
+    ANSELH = 0;             //Solo puertos digitales
     ANSEL = 0;
     
-    TRISA = 0x00;           //Purtos A y B como salidas
+    TRISA = 0x00;           //Puertos A y B como salidas
     TRISB = 0x00;
     PORTA = 0;
     PORTB = 0;
-    OSCCON = 0B1110111;
+    OSCCON = 0B1110111;     //Oscilador interno a 4MHz
     
-    INTCONbits.INTE = 1;
+    INTCONbits.INTE = 1;    //Interrupciones encendidas
     INTCONbits.PEIE = 1;
     
     
     
     
-    SPBRG = 12;
-    TXSTAbits.BRGH = 0;
+    SPBRG = 12;             //Configuración de la frecuencia de transmisión
+    TXSTAbits.BRGH = 0;     //y lectura de datos
     BAUDCTLbits.BRG16 = 0;
     
     PIE1bits.RCIE = 0;      //Se activa la interrupción
@@ -67,39 +67,37 @@ void main(void) {
     TXSTAbits.TX9 = 0;      //Transmisión de 8 bits
     
     RCSTAbits.SPEN = 1;
-    RCSTAbits.RX9 = 0;
+    RCSTAbits.RX9 = 0;      //Recepción de 8bits
     RCSTAbits.CREN = 1;
     PIR1bits.TXIF = 0;
     PIR1bits.RCIF = 0;
-    INTCONbits.GIE = 1;
+    INTCONbits.GIE = 1;     //Comienzan las interrupciones
     
     while (1){
-        //UART_write("Buenas jovenes \r \0");
-        //__delay_ms(50);
-        UART_write("Que accion desea ejecutar? \r \0");
-        __delay_ms(50);
-        UART_write("[1] Desplegar Cadena de Caracteres \r \0");
+        UART_write("Que accion desea ejecutar? \r \0"); //Envía la cadena a la
+        __delay_ms(50);                                 //función y espera
+        UART_write("[1] Desplegar Cadena de Caracteres \r \0");//un momento
         __delay_ms(50);
         UART_write("[2] Cambiar PORTA \r \0");
         __delay_ms(50);
         UART_write("[3] Cambiar PORTB \r \0");
         __delay_ms(1000);
         
-        while(!RCIF);
+        while(!RCIF);           //Espera a que se registre una recepción
         __delay_ms(50);
         
         if (RCREG == '1'){
-            UART_write("Buenas jovenes \r \0");
-        }
+            UART_write("Buenas jovenes \r \0"); //Envía la cadena si se envió
+        }                                       //un "1"
         else if (RCREG == '2'){
             UART_write("Ingrese el valor: \r \0");
-            while(!RCIF);
-            PORTA = RCREG;
+            while(!RCIF);           //Si se envía un "2", espera a que se vuelva
+            PORTA = RCREG;          //a enviar un valor y lo muestrea en PORTA
                 }
             
         else if (RCREG == '3'){
             UART_write("Ingrese el valor: \r \0");
-            while(!RCIF);
+            while(!RCIF);           //Mismo caso con el PORTB
             PORTB = RCREG;
                 }
             }

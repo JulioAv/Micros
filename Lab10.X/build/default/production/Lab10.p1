@@ -516,105 +516,105 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Lab10.c: 76:     while (1){
 [e :U 147 ]
 {
-"79
-[; ;Lab10.c: 79:         UART_write("Que accion desea ejecutar? \r \0");
+"77
+[; ;Lab10.c: 77:         UART_write("Que accion desea ejecutar? \r \0");
 [e ( _UART_write (1 :s 1C ]
+"78
+[; ;Lab10.c: 78:         _delay((unsigned long)((50)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"79
+[; ;Lab10.c: 79:         UART_write("[1] Desplegar Cadena de Caracteres \r \0");
+[e ( _UART_write (1 :s 2C ]
 "80
 [; ;Lab10.c: 80:         _delay((unsigned long)((50)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "81
-[; ;Lab10.c: 81:         UART_write("[1] Desplegar Cadena de Caracteres \r \0");
-[e ( _UART_write (1 :s 2C ]
+[; ;Lab10.c: 81:         UART_write("[2] Cambiar PORTA \r \0");
+[e ( _UART_write (1 :s 3C ]
 "82
 [; ;Lab10.c: 82:         _delay((unsigned long)((50)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "83
-[; ;Lab10.c: 83:         UART_write("[2] Cambiar PORTA \r \0");
-[e ( _UART_write (1 :s 3C ]
-"84
-[; ;Lab10.c: 84:         _delay((unsigned long)((50)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"85
-[; ;Lab10.c: 85:         UART_write("[3] Cambiar PORTB \r \0");
+[; ;Lab10.c: 83:         UART_write("[3] Cambiar PORTB \r \0");
 [e ( _UART_write (1 :s 4C ]
-"86
-[; ;Lab10.c: 86:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+"84
+[; ;Lab10.c: 84:         _delay((unsigned long)((1000)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"88
-[; ;Lab10.c: 88:         while(!RCIF);
+"86
+[; ;Lab10.c: 86:         while(!RCIF);
 [e $U 149  ]
 [e :U 150 ]
 [e :U 149 ]
 [e $ ! _RCIF 150  ]
 [e :U 151 ]
-"89
-[; ;Lab10.c: 89:         _delay((unsigned long)((50)*(8000000/4000.0)));
+"87
+[; ;Lab10.c: 87:         _delay((unsigned long)((50)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"91
-[; ;Lab10.c: 91:         if (RCREG == '1'){
+"89
+[; ;Lab10.c: 89:         if (RCREG == '1'){
 [e $ ! == -> _RCREG `ui -> 49 `ui 152  ]
 {
-"92
-[; ;Lab10.c: 92:             UART_write("Buenas jovenes \r \0");
+"90
+[; ;Lab10.c: 90:             UART_write("Buenas jovenes \r \0");
 [e ( _UART_write (1 :s 5C ]
-"93
-[; ;Lab10.c: 93:         }
+"91
+[; ;Lab10.c: 91:         }
 }
 [e $U 153  ]
-"94
-[; ;Lab10.c: 94:         else if (RCREG == '2'){
+"92
+[; ;Lab10.c: 92:         else if (RCREG == '2'){
 [e :U 152 ]
 [e $ ! == -> _RCREG `ui -> 50 `ui 154  ]
 {
-"95
-[; ;Lab10.c: 95:             UART_write("Ingrese el valor: \r \0");
+"93
+[; ;Lab10.c: 93:             UART_write("Ingrese el valor: \r \0");
 [e ( _UART_write (1 :s 6C ]
-"96
-[; ;Lab10.c: 96:             while(!RCIF);
+"94
+[; ;Lab10.c: 94:             while(!RCIF);
 [e $U 155  ]
 [e :U 156 ]
 [e :U 155 ]
 [e $ ! _RCIF 156  ]
 [e :U 157 ]
-"97
-[; ;Lab10.c: 97:             PORTA = RCREG;
+"95
+[; ;Lab10.c: 95:             PORTA = RCREG;
 [e = _PORTA _RCREG ]
-"98
-[; ;Lab10.c: 98:                 }
+"96
+[; ;Lab10.c: 96:                 }
 }
 [e $U 158  ]
-"100
-[; ;Lab10.c: 100:         else if (RCREG == '3'){
+"98
+[; ;Lab10.c: 98:         else if (RCREG == '3'){
 [e :U 154 ]
 [e $ ! == -> _RCREG `ui -> 51 `ui 159  ]
 {
-"101
-[; ;Lab10.c: 101:             UART_write("Ingrese el valor: \r \0");
+"99
+[; ;Lab10.c: 99:             UART_write("Ingrese el valor: \r \0");
 [e ( _UART_write (1 :s 7C ]
-"102
-[; ;Lab10.c: 102:             while(!RCIF);
+"100
+[; ;Lab10.c: 100:             while(!RCIF);
 [e $U 160  ]
 [e :U 161 ]
 [e :U 160 ]
 [e $ ! _RCIF 161  ]
 [e :U 162 ]
-"103
-[; ;Lab10.c: 103:             PORTB = RCREG;
+"101
+[; ;Lab10.c: 101:             PORTB = RCREG;
 [e = _PORTB _RCREG ]
-"104
-[; ;Lab10.c: 104:                 }
+"102
+[; ;Lab10.c: 102:                 }
 }
 [e :U 159 ]
 [e :U 158 ]
 [e :U 153 ]
-"105
-[; ;Lab10.c: 105:             }
+"103
+[; ;Lab10.c: 103:             }
 }
 [e :U 146 ]
 [e $U 147  ]
 [e :U 148 ]
-"106
-[; ;Lab10.c: 106:         }
+"104
+[; ;Lab10.c: 104:         }
 [e :UE 145 ]
 }
 [a 2C 91 49 93 32 68 101 115 112 108 101 103 97 114 32 67 97 100 101 110 97 32 100 101 32 67 97 114 97 99 116 101 114 101 115 32 13 32 0 0 ]
